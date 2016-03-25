@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/semantic.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/semantic.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <!--********************* JS SOURCE CODE  *********************-->
+    <script type="text/javascript" id="hidden">
+      var _score;
+      var _randomNumber=Math.floor(Math.random()*11)
+      var _randomNumber_2=Math.floor(Math.random()*11)
+      var _gameOver = false;
+
+      //Start Game function
+      function startGame()
+      {
+        _score = 0;
+        document.getElementById("_var_sum").disabled = false;
+        _gameOver = false;
+        var _ready_text = "Are you ready?";
+        var duration = 60 * 1,display = document.querySelector('#time');
+        confirm("Answer as much question as possible within 1 minutes.\n"+_ready_text);
+        generateRandomNumber();
+        startTimer(duration, display);
+      }
+
+      //Generate random number
+      function generateRandomNumber()
+      {
+        _randomNumber=Math.floor(Math.random()*11)
+        _randomNumber_2=Math.floor(Math.random()*11)
+        document.getElementById("score").innerHTML = _score;
+        document.getElementById("_var_1").innerHTML = _randomNumber;
+        document.getElementById("_var_2").innerHTML = _randomNumber_2;
+        document.getElementById("_var_sum").value = "";
+      }
+
+      //Answer checking
+      function checkAnswer(event)
+      {
+        var _answerInput = Number(document.getElementById("_var_sum").value);
+        var _keyPressed = event.keyCode;
+        var _tmpSum = _randomNumber + _randomNumber_2;
+        if(_keyPressed == 13)
+        {
+          if(_answerInput == _tmpSum)
+          {
+            _score += 1;
+            generateRandomNumber();
+          }
+          else
+            generateRandomNumber();
+        }
+      }
+
+      //Countdown Timer
+      function startTimer(duration, display)
+      {
+        var _timer = duration, minutes, seconds;
+        var _interval = setInterval(function ()
+        {
+          minutes = parseInt(_timer / 60);
+          seconds = parseInt(_timer % 60);
+
+          //Ternary operators test ? expression if true : expression if false
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = minutes + ":" + seconds;
+
+          if (--_timer < 0)
+          {
+            _timer = 0;
+            _gameOver = true;
+            gameOver(_gameOver);
+            clearInterval(_interval);
+          }
+        }, 1000);
+      }
+
+      //Game Over
+      function gameOver(_gameOver)
+      {
+        if(_gameOver)
+        {
+          document.getElementById("_var_sum").disabled = true;
+          $("#startBtn").slideDown("fast");
+          var _tmpHighScore = Number(document.getElementById("currentHighScore").innerHTML);
+          if(_score > _tmpHighScore)
+          {
+            var _playerName = prompt("Please insert your name");
+            document.getElementById("currentHighScore").innerHTML = _score;
+            document.getElementById("currentPlayer").innerHTML = _playerName;
+          }
+        }
+      }
+      document.getElementById('hidden').innerHTML = "";
+    </script>
+    <!--********************* END JS SOURCE CODE  *********************-->
+  </head>
+  <body>
+    <div>
+      <p id="title"><b>Arimethic Challenge</b></p>
+      <div id="nav_bar">
+        <p id="score">Current Score</p>
+        <button id="startBtn" onclick="startGame()" class="ui huge inverted green button">Start The Game</button>
+      </div>
+      <div id="play_content">
+        <label id="_var_1">00</label>
+        <label> + </label>
+        <label id="_var_2">00</label>
+        <label> = </label>
+        <input id="_var_sum" onkeypress="checkAnswer(event)" placeholder="Answer here" disabled="true"></input>
+      </div>
+      <div id="time_content">
+        <label id="time"></label>
+      </div>
+      <div id="highScore">
+        <label> Current High-Score </label>
+        <br/>
+        <br/>
+        <br/>
+        <label id="currentHighScore" style="text-decoration:underline;">0</label>
+        <br/>
+        <br/>
+        <br/>
+        <label id="currentPlayer">Leng Zai</label>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+body
+{
+  width: 100%;
+  height: 900px;
+  color: white;
+  background: radial-gradient(black,silver);
+}
+
+#title
+{
+  margin: 0 0 1.5% 0;
+  font-size: 750%;
+  text-align: center;
+  border: 10px solid teal;
+}
+
+#nav_bar
+{
+  text-align: center;
+}
+
+#score
+{
+  margin: 2% 0 2% 0;
+  font-size: 450%;
+  font-weight: double;
+}
+
+#play_content
+{
+  margin: 2% 0 2% 0;
+  text-align: center;
+  font-size: 400%;
+  font-weight: bold;
+}
+
+#_var_sum
+{
+  color: black;
+  text-align : center;
+}
+
+#time_content
+{
+  margin: 2% 0 0 0;
+  text-align: center;
+  font-size: 250%;
+}
+
+#highScore
+{
+  margin: 5% 30% 2% 30%;
+  padding: 2% 0 2% 0;
+  text-align: center;
+  font-size: 200%;
+  border: 5px double teal;
+}
