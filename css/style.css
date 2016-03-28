@@ -3,7 +3,14 @@ body
   width: 100%;
   height: 900px;
   color: white;
-  background: radial-gradient(black,silver);
+  background: radial-gradient(black,grey);
+}
+
+#loadingImage
+{
+  margin: 1.5% 0 1% 0;
+  height: 100%;
+  width: 100%;
 }
 
 #title
