@@ -30,8 +30,8 @@
       //Generate random number
       function generateRandomNumber()
       {
-        _randomNumber=Math.floor(Math.random()*11)
-        _randomNumber_2=Math.floor(Math.random()*11)
+        _randomNumber=Math.floor(Math.random()*5)
+        _randomNumber_2=Math.floor(Math.random()*5)
         document.getElementById("score").innerHTML = _score;
         document.getElementById("_var_1").innerHTML = _randomNumber;
         document.getElementById("_var_2").innerHTML = _randomNumber_2;
@@ -46,13 +46,15 @@
         var _tmpSum = _randomNumber + _randomNumber_2;
         if(_keyPressed == 13)
         {
-          if(_answerInput == _tmpSum)
-          {
-            _score += 1;
-            generateRandomNumber();
-          }
-          else
-            generateRandomNumber();
+          _score += _answerInput == _tmpSum ? 1 : 0;
+          generateRandomNumber();
+          // if(_answerInput == _tmpSum)
+          // {
+          //   _score += 1;
+          //   generateRandomNumber();
+          // }
+          // else
+          //   generateRandomNumber();
         }
       }
 
