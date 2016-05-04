@@ -30,8 +30,8 @@
       //Generate random number
       function generateRandomNumber()
       {
-        _randomNumber=Math.floor(Math.random()*5)
-        _randomNumber_2=Math.floor(Math.random()*5)
+        _randomNumber=Math.floor(Math.random()*11)
+        _randomNumber_2=Math.floor(Math.random()*11)
         document.getElementById("score").innerHTML = _score;
         document.getElementById("_var_1").innerHTML = _randomNumber;
         document.getElementById("_var_2").innerHTML = _randomNumber_2;
@@ -42,26 +42,27 @@
       function checkAnswer(event)
       {
         var _answerInput = Number(document.getElementById("_var_sum").value);
-        var _keyPressed = event.keyCode;
+          var _keyPressed = event.keyCode;
         var _tmpSum = _randomNumber + _randomNumber_2;
         if(_keyPressed == 13)
         {
-          _score += _answerInput == _tmpSum ? 1 : 0;
-          generateRandomNumber();
-          // if(_answerInput == _tmpSum)
-          // {
-          //   _score += 1;
-          //   generateRandomNumber();
-          // }
-          // else
-          //   generateRandomNumber();
+          //_score += _answerInput == _tmpSum ? 1 : 0;
+          //generateRandomNumber();
+          if(_answerInput == _tmpSum)
+          {
+            _score += 1;
+            generateRandomNumber();
+          }
+          else
+            generateRandomNumber();
         }
       }
 
       //Countdown Timer
       function startTimer(duration, display)
       {
-        var _timer = duration, minutes, seconds;
+        var _timer = duration;
+        var minutes, seconds;
         var _interval = setInterval(function ()
         {
           minutes = parseInt(_timer / 60);
@@ -104,7 +105,7 @@
     <!--********************* END JS SOURCE CODE  *********************-->
   </head>
   <body>
-    <img id="loadingImage" src="img/k-entertainment.png" style="display:none;"/>
+    <img id="loadingImage" src="img/unity-load.png" style="display:none;"/>
     <div class="content" style="display:none;">
       <p id="title"><b>Arimethic Challenge</b></p>
       <div id="nav_bar">
